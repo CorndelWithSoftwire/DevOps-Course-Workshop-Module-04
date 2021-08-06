@@ -159,7 +159,7 @@ A summary of crontab and some tips:
 We've got some requirements from the CEO:
 * A dataset should be generated every five minutes, containing earthquakes in the last hour. It should be displayed on the site at `/latest`. <details><summary>Hint</summary> Use the --dataset-name option mentioned in the [cliapp_reference.md](./cliapp_reference.md) to specify a dataset name of "latest".</details>
 * The same data should also be available with a dataset name containing the date and time it was generated. <details><summary>Hint</summary>Use the `date` command. E.g. `date +"%y"` would give you the year.</details> 
-* Any datasets older than 24 hours should be automatically deleted. More recent ones should be kept accessible. <details><summary>Hint</summary>Use the `find` command on the folder containing the datasets. It has options to filter by date/time last modified, and an option to delete the files it finds.</details>
+* Any datasets older than 24 hours should be automatically deleted. More recent ones should be kept accessible. <details><summary>Hint</summary>Use the `find` command on the folder containing the datasets. It has options to filter by date/time last modified, and an option to delete the files it finds. You can run `echo DATA_FOLDER` to find out where the datasets are being stored.</details>
 
 ## Part 2
 
@@ -167,7 +167,7 @@ We've got some requirements from the CEO:
 
 Now you've got the CEO happy it's time to start creating a local development environment. We've started you off by creating a skeleton [Vagrantfile](./Vagrantfile) with some hints as to what different steps there are.
 
-Run `vagrant up` in a directory containing a file called `Vagrantfile` and it will create a VM based on that file's instructions. By default, any files in the current directory will also sync the current folder with a folder at `/vagrant` inside the VM.
+Run `vagrant up` in a directory containing a file called `Vagrantfile` and it will create a VM based on that file's instructions. By default, any files in the current directory will also sync with a folder at `/vagrant` inside the VM.
 
 So to give the Vagrant VM a copy of the `webapp` and `cliapp` executables, you need to copy them from your remote VM into the same folder as your Vagrantfile.
 
@@ -181,7 +181,7 @@ Your Vagrantfile will need to:
 * Set up a [provisioning script](https://www.vagrantup.com/docs/provisioning/shell). This script should prepare the environment and install any required tools. It is intended as something you run once.
 * Use a [trigger](https://www.vagrantup.com/docs/triggers) to start up the webapp after you run "up". (You can just run the `webapp` executable directly).
 
-There are a few provisioning steps required to get `webapp` running on the Vagrant VM. You're not supposed to know what they are yet, or even what port to forward! If you're not sure where to start use `vagrant ssh` to log in to the VM, then try running the `webapp` file you copied and see what happens.
+There are a few provisioning steps required to get `webapp` running on the Vagrant VM. You're not supposed to know what they are yet, or even what port to forward! If you're not sure where to start use `vagrant ssh` to log in to the VM, then try running some commands manually. Use the `cliapp` to generate datasets as before. And run the `webapp` executable to try to start up the website.
 
 Useful Vagrant commands:
 - `vagrant ssh` will ssh into the Vagrant managed VM
